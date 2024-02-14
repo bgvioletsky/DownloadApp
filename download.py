@@ -36,7 +36,7 @@ def zip_folder(folder_path, output_path):
             for file in files:
                 file_path = os.path.join(root, file)
                 zipf.write(file_path, os.path.relpath(file_path, folder_path))
-    # shutil.rmtree(folder_path)
+    shutil.rmtree(folder_path)
 
 
 # 要压缩的文件夹路径

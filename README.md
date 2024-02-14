@@ -1,3 +1,3 @@
-# action1
-测试
-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
+# downloadapp
+
+下载软件到发布列表
