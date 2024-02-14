@@ -33,7 +33,7 @@ jobs:
         id: compile
         run: |
           bgcode=$(date +"%Y.%m.%d-%H%M")
-          echo "::set-output name={{bgcode1}}::{{$bgcode}}"
+          echo "::set-output name={bgcode1}::{$bgcode}"
     
       - name: Upload bin directory
         uses: actions/upload-artifact@main
@@ -45,7 +45,7 @@ jobs:
         id: tag
         run: |
           release_tag=$(date +"%Y.%m.%d-%H%M")
-          echo "::set-output name={{release_tag}}::{{$release_tag}}"
+          echo "::set-output name={release_tag}::{$release_tag}"
           echo "bgcode" >> release.txt
       
       - name: Upload firmware to release
