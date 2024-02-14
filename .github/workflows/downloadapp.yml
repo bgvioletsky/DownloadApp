@@ -32,18 +32,20 @@ jobs:
       - name: 设置变量
         id: compile
         run: |
-          echo "FILE_DATE=_$(date +"%Y%m%d-%H%M")" >> $GITHUB_ENV
+          bgcode=$(date +"%Y.%m.%d-%H%M")
+          echo "::set-output name={{bgcode1}}::{{$bgcode}}"
+    
       - name: Upload bin directory
         uses: actions/upload-artifact@main
         with:
-          name: bgcode${{ env.FILE_DATE }}
+          name: bgcode_${{ steps.compile.outputs.bgcode1 }}
           path: ./ruanjian.zip
 
       - name: Generate release tag
         id: tag
         run: |
           release_tag=$(date +"%Y.%m.%d-%H%M")
-          echo "::set-output name=release_tag::$release_tag"
+          echo "::set-output name={{release_tag}}::{{$release_tag}}"
           echo "bgcode" >> release.txt
       
       - name: Upload firmware to release
