@@ -41,9 +41,9 @@ jobs:
           name: bgcode_${{ env.bgcode }}
           path: ./ruanjian.zip
 
-      - name: 创建分枝
-        id: tag
-        run: |
+          - name: 创建分枝
+          id: tag
+          run: |
             echo "release_tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
             link_url=(
                  "https://gh.h233.eu.org/https://github.com"
@@ -60,9 +60,9 @@ jobs:
                  "https://download.yzuu.cf"
              )
             jiashua=$((RANDOM % ${#link_url[@]}))
-            url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/""$release_tag""/ruanjian.zip"
+            url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/ruanjian.zip"
             echo "$url" >> release.txt
-           
+        
         
       - name: 发布到release
         uses: softprops/action-gh-release@v1
