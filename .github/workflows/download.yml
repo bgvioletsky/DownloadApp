@@ -80,9 +80,15 @@ jobs:
       - name: 删除过去的workflow
         uses: GitRML/delete-workflow-runs@main
         with:
-        #   retain_days: 1
-          retain_runs: 4
-        #   keep_minimum_runs: 3
+          retain_days: 7
+          keep_minimum_runs: 4
+          token: ${{ secrets.MY_GIT_TOKEN }}
+
+
+
+
+
+
     
       - name: 删除老的Releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
