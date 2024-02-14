@@ -44,28 +44,31 @@ jobs:
       - name: 创建分枝
         id: tag
         run: |
-          echo "release_tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
-          link_url=(
-               "https://gh.h233.eu.org/https://github.com"
-               "https://gh.ddlc.top/https://github.com"
-               "https://dl.ghpig.top/https://github.com"
-               "https://slink.ltd/https://github.com"
-               "https://git.xfj0.cn/https://github.com"
-               "https://gh.con.sh/https://github.com"
-               "https://ghps.cc/https://github.com"
-               "https://gh-proxy.com/https://github.com"
-               "https://cors.isteed.cc/github.com"
-               "https://hub.gitmirror.com/https://github.com"
-               "https://download.nuaa.cf"
-               "https://download.yzuu.cf"
-           )
-          response=$(curl -s https://api.github.com/repos/MetaCubeX/ClashX.Meta/releases/latest)
-          links=($(echo "$response" | grep 'browser_download_url' | cut -d'"' -f4 ))[0]
-          stripped_link=$(echo "$link" | sed 's~^https://github.com~~')
-          jiashua=$((RANDOM % ${#link_url[@]}))
-          url=${link_url[$jiashua]}$stripped_link
-          echo "$url" >> release.txt
-      
+            echo "release_tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+            link_url=(
+                 "https://gh.h233.eu.org/https://github.com"
+                 "https://gh.ddlc.top/https://github.com"
+                 "https://dl.ghpig.top/https://github.com"
+                 "https://slink.ltd/https://github.com"
+                 "https://git.xfj0.cn/https://github.com"
+                 "https://gh.con.sh/https://github.com"
+                 "https://ghps.cc/https://github.com"
+                 "https://gh-proxy.com/https://github.com"
+                 "https://cors.isteed.cc/github.com"
+                 "https://hub.gitmirror.com/https://github.com"
+                 "https://download.nuaa.cf"
+                 "https://download.yzuu.cf"
+             )
+            response=$(curl -s https://api.github.com/repos/MetaCubeX/ClashX.Meta/releases/latest)
+            links=($(echo "$response" | grep 'browser_download_url' | cut -d'"' -f4 ))
+        
+            for link in "${links[@]}"; do
+              stripped_link=$(echo "$link" | sed 's~^https://github.com~~')
+              jiashua=$((RANDOM % ${#link_url[@]}))
+              url=${link_url[$jiashua]}$stripped_link
+              echo "$url" >> release.txt
+            done
+        
       - name: 发布到release
         uses: softprops/action-gh-release@v1
         env:
