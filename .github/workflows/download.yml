@@ -45,23 +45,27 @@ jobs:
         id: tag
         run: |
             echo "release_tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+      - name: 创建链接
+        id: ss
+        run: |
             link_url=(
-                 "https://gh.h233.eu.org/https://github.com"
-                 "https://gh.ddlc.top/https://github.com"
-                 "https://dl.ghpig.top/https://github.com"
-                 "https://slink.ltd/https://github.com"
-                 "https://git.xfj0.cn/https://github.com"
-                 "https://gh.con.sh/https://github.com"
-                 "https://ghps.cc/https://github.com"
-                 "https://gh-proxy.com/https://github.com"
-                 "https://cors.isteed.cc/github.com"
-                 "https://hub.gitmirror.com/https://github.com"
-                 "https://download.nuaa.cf"
-                 "https://download.yzuu.cf"
-             )
+                "https://gh.h233.eu.org/https://github.com"
+                "https://gh.ddlc.top/https://github.com"
+                "https://dl.ghpig.top/https://github.com"
+                "https://slink.ltd/https://github.com"
+                "https://git.xfj0.cn/https://github.com"
+                "https://gh.con.sh/https://github.com"
+                "https://ghps.cc/https://github.com"
+                "https://gh-proxy.com/https://github.com"
+                "https://cors.isteed.cc/github.com"
+                "https://hub.gitmirror.com/https://github.com"
+                "https://download.nuaa.cf"
+                "https://download.yzuu.cf"
+            )
             jiashua=$((RANDOM % ${#link_url[@]}))
             url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/ruanjian.zip"
             echo "$url" >> release.txt
+                      
         
         
       - name: 发布到release
