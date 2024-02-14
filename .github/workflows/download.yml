@@ -83,6 +83,7 @@ jobs:
           retain_days: 7
           keep_minimum_runs: 4
           token: ${{ secrets.MY_GIT_TOKEN }}
+          repository: bgvioletsky/DownloadApp
 
 
 
