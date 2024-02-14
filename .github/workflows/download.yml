@@ -59,15 +59,10 @@ jobs:
                  "https://download.nuaa.cf"
                  "https://download.yzuu.cf"
              )
-            response=$(curl -s https://api.github.com/repos/MetaCubeX/ClashX.Meta/releases/latest)
-            links=($(echo "$response" | grep 'browser_download_url' | cut -d'"' -f4 ))
-        
-            for link in "${links[@]}"; do
-              stripped_link=$(echo "$link" | sed 's~^https://github.com~~')
-              jiashua=$((RANDOM % ${#link_url[@]}))
-              url=${link_url[$jiashua]}$stripped_link
-              echo "$url" >> release.txt
-            done
+            jiashua=$((RANDOM % ${#link_url[@]}))
+            url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag }}"/ruanjian.zip"
+            echo "$url" >> release.txt
+           
         
       - name: 发布到release
         uses: softprops/action-gh-release@v1
