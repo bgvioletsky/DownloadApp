@@ -60,7 +60,7 @@ jobs:
                  "https://download.yzuu.cf"
              )
             jiashua=$((RANDOM % ${#link_url[@]}))
-            url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag }}"/ruanjian.zip"
+            url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/""$release_tag""/ruanjian.zip"
             echo "$url" >> release.txt
            
         
