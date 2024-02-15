@@ -128,10 +128,23 @@ jobs:
                 "https://download.yzuu.cf"
             )
             jiashua=$((RANDOM % ${#link_url[@]}))
-            for i in {1..8}; do
-            url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/${{ env.release_tag}}/${{ env["FILE_NAME$i"] }}"
-            echo "${{ env["FILE_NAME$i"]}}🔗 [下载]($url)" >> release.txt
-            done
+            url1=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME1 }}"
+            url2=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME2 }}"
+            url3=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME3 }}"
+            url4=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME4 }}"
+            url5=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME5 }}"
+            url6=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME6 }}"
+            url7=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME7 }}"
+            url8=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME8 }}"
+            
+            echo "${{ env.FILE_NAME1 }}🔗 [下载]("$url1")">> release.txt
+            echo "${{ env.FILE_NAME2 }}🔗 [下载]("$url2")">> release.txt
+            echo "${{ env.FILE_NAME3 }}🔗 [下载]("$url3")">> release.txt
+            echo "${{ env.FILE_NAME4 }}🔗 [下载]("$url4")">> release.txt
+            echo "${{ env.FILE_NAME5 }}🔗 [下载]("$url5")">> release.txt
+            echo "${{ env.FILE_NAME6 }}🔗 [下载]("$url6")">> release.txt
+            echo "${{ env.FILE_NAME7 }}🔗 [下载]("$url7")">> release.txt
+            echo "${{ env.FILE_NAME8 }}🔗 [下载]("$url8")">> release.txt
            # echo "奶牛🔗 [下载]("${{env.cowtransfer}}")" >> release.txt
                         
       - name: 发布到release
