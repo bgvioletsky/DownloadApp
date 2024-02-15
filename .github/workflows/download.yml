@@ -81,6 +81,7 @@ jobs:
         id: tag
         run: |
             echo "release_tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+            mv ruanjian.zip ./path
 
       - name: 创建链接
         id: ss
