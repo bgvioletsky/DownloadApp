@@ -114,38 +114,39 @@ jobs:
       - name: 创建链接
         id: ss
         run: |
-            link_url=(
-                "https://gh.h233.eu.org/https://github.com"
-                "https://gh.ddlc.top/https://github.com"
-                "https://dl.ghpig.top/https://github.com"
-                "https://slink.ltd/https://github.com"
-                "https://git.xfj0.cn/https://github.com"
-                "https://gh.con.sh/https://github.com"
-                "https://ghps.cc/https://github.com"
-                "https://gh-proxy.com/https://github.com"
-                "https://cors.isteed.cc/github.com"
-                "https://hub.gitmirror.com/https://github.com"
-                "https://download.nuaa.cf"
-                "https://download.yzuu.cf"
-            )
-            jiashua=$((RANDOM % ${#link_url[@]})) 
-            url1=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME1 }}"
-            url2=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME2 }}"
-            url3=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME3 }}"
-            url4=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME4 }}"
-            url5=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME5 }}"
-            url6=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME6 }}"
-            url7=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME7 }}"
-            url8=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME8 }}"
+            # link_url=(
+            #     "https://gh.h233.eu.org/https://github.com"
+            #     "https://gh.ddlc.top/https://github.com"
+            #     "https://dl.ghpig.top/https://github.com"
+            #     "https://slink.ltd/https://github.com"
+            #     "https://git.xfj0.cn/https://github.com"
+            #     "https://gh.con.sh/https://github.com"
+            #     "https://ghps.cc/https://github.com"
+            #     "https://gh-proxy.com/https://github.com"
+            #     "https://cors.isteed.cc/github.com"
+            #     "https://hub.gitmirror.com/https://github.com"
+            #     "https://download.nuaa.cf"
+            #     "https://download.yzuu.cf"
+            # )
+            # jiashua=$((RANDOM % ${#link_url[@]})) 
+            # url1=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME1 }}"
+            # url2=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME2 }}"
+            # url3=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME3 }}"
+            # url4=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME4 }}"
+            # url5=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME5 }}"
+            # url6=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME6 }}"
+            # url7=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME7 }}"
+            # url8=${link_url[$jiashua]}"/${{ github.repository }}/releases/download/"${{ env.version}}"/${{ env.FILE_NAME8 }}"
             
-            echo "${{ env.FILE_NAME1 }}🔗 [下载]("$url1")">> release.txt
-            echo "${{ env.FILE_NAME2 }}🔗 [下载]("$url2")">> release.txt
-            echo "${{ env.FILE_NAME3 }}🔗 [下载]("$url3")">> release.txt
-            echo "${{ env.FILE_NAME4 }}🔗 [下载]("$url4")">> release.txt
-            echo "${{ env.FILE_NAME5 }}🔗 [下载]("$url5")">> release.txt
-            echo "${{ env.FILE_NAME6 }}🔗 [下载]("$url6")">> release.txt
-            echo "${{ env.FILE_NAME7 }}🔗 [下载]("$url7")">> release.txt
-            echo "${{ env.FILE_NAME8 }}🔗 [下载]("$url8")">> release.txt
+            # echo "${{ env.FILE_NAME1 }}🔗 [下载]("$url1")">> release.txt
+            # echo "${{ env.FILE_NAME2 }}🔗 [下载]("$url2")">> release.txt
+            # echo "${{ env.FILE_NAME3 }}🔗 [下载]("$url3")">> release.txt
+            # echo "${{ env.FILE_NAME4 }}🔗 [下载]("$url4")">> release.txt
+            # echo "${{ env.FILE_NAME5 }}🔗 [下载]("$url5")">> release.txt
+            # echo "${{ env.FILE_NAME6 }}🔗 [下载]("$url6")">> release.txt
+            # echo "${{ env.FILE_NAME7 }}🔗 [下载]("$url7")">> release.txt
+            # echo "${{ env.FILE_NAME8 }}🔗 [下载]("$url8")">> release.txt
+            echo "下载软件app">> release.txt
       # - name: 压缩文件      
       #   id : ssa
       #   run : ./ys.sh
