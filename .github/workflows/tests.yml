@@ -9,6 +9,8 @@ jobs:
        name: Test
        runs-on: ubuntu-latest
        steps:
+       - name: Checkout code
+         uses: actions/checkout@v3
        - name: Set up Go
          uses: actions/setup-go@v4
          with:
@@ -18,12 +20,13 @@ jobs:
              git clone https://github.com/bgvioletsky/DownloadApp.git  bg
              cd ./bg/xbs
              go mod tidy && make
+             echo "vf">>kk.txt
        - name: 发布到release
          uses: softprops/action-gh-release@v1
          env:
            GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN}}
          with:
            tag_name: dsa
-           body_path: "sda"
+           body_path: ./bg/xbs/kk.txt
            files: ./bg/xbs/xbs
     
