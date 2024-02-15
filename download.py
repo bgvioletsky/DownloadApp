@@ -9,7 +9,7 @@ if not os.path.exists(folder_path):
     os.makedirs(folder_path)
 
 urllist = [{'name': "MetaCubeX/ClashX.Meta", 'path': 0},
-           {'name': "Molunerfinn/PicGo", 'path': 5} ,{'name':"MetaCubeX/ClashMetaForAndroid","path":2},{'name':'gedoor/legado','path':0}]
+           {'name': "Molunerfinn/PicGo", 'path': 5} ,{'name':"MetaCubeX/ClashMetaForAndroid","path":2},{'name':'gedoor/legado','path':0},{'name':'abc555333/proxy_client','path':0},{'name':'abc555333/proxy_client','path':3},{'name':'abc555333/proxy_client','path':1},{'name':'abc555333/proxy_client','path':2}]
 
 for x in urllist:
     url = "https://api.github.com/repos/" + x['name'] + "/releases/latest"
