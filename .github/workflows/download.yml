@@ -50,7 +50,7 @@ jobs:
           FILE_NAMES=($(ls ./path))
           count=1
           for filename in "${FILE_NAMES[@]}"; do
-            echo "FILE_NAME${count}=${filename}" >> $GITHUB_ENV
+            echo "FILE_NAME${count}=./path/${filename}" >> $GITHUB_ENV
             ((count++))
           done
           echo "release_tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
@@ -60,60 +60,60 @@ jobs:
         uses: actions/upload-artifact@main
         with:
             name: bgcode_${{ env.FILE_NAME1 }}
-            path: ./path/${{ env.FILE_NAME1 }}
+            path:  ${{ env.FILE_NAME1 }}
       - name: 上传文件2
         if: env.UPLOAD_2 == 'true' && !cancelled()
         uses: actions/upload-artifact@main
         with:
             name: bgcode_${{ env.FILE_NAME2 }}
-            path: ./path/${{ env.FILE_NAME2 }}
+            path:  ${{ env.FILE_NAME2 }}
       - name: 上传文件3
         if: env.UPLOAD_3 == 'true' && !cancelled()
         uses: actions/upload-artifact@main
         with:
             name: bgcode_${{ env.FILE_NAME3 }}
-            path: ./path/${{ env.FILE_NAME3 }}
+            path:  ${{ env.FILE_NAME3 }}
       - name: 上传文件4
         if: env.UPLOAD_4 == 'true' && !cancelled()
         uses: actions/upload-artifact@main
         with:
             name: bgcode_${{ env.FILE_NAME4 }}
-            path: ./path/${{ env.FILE_NAME4 }}
+            path:  ${{ env.FILE_NAME4 }}
       - name: 上传文件5
         if: env.UPLOAD_5 == 'true' && !cancelled()
         uses: actions/upload-artifact@main
         with:
             name: bgcode_${{ env.FILE_NAME5 }}
-            path: ./path/${{ env.FILE_NAME5 }}
+            path:  ${{ env.FILE_NAME5 }}
       - name: 上传文件6
         if: env.UPLOAD_6 == 'true' && !cancelled()
         uses: actions/upload-artifact@main
         with:
             name: bgcode_${{ env.FILE_NAME6 }}
-            path: ./path/${{ env.FILE_NAME6 }}
+            path:  ${{ env.FILE_NAME6 }}
       - name: 上传文件7
         if: env.UPLOAD_7 == 'true' && !cancelled()
         uses: actions/upload-artifact@main
         with:
             name: bgcode_${{ env.FILE_NAME7 }}
-            path: ./path/${{ env.FILE_NAME7 }}
+            path:  ${{ env.FILE_NAME7 }}
       - name: 上传文件8
         if: env.UPLOAD_8 == 'true' && !cancelled()
         uses: actions/upload-artifact@main
         with:
             name: bgcode_${{ env.FILE_NAME8 }}
-            path: ./path/${{ env.FILE_NAME8 }}
+            path:  ${{ env.FILE_NAME8 }}
       - name: 上传文件9
         if: env.UPLOAD_9 == 'true' && !cancelled()
         uses: actions/upload-artifact@main
         with:
           name: bgcode_${{ env.FILE_NAME9 }}
-          path: ./path/${{ env.FILE_NAME9 }}
+          path:  ${{ env.FILE_NAME9 }}
       - name: Upload firmware to cowtransfer
         id: cowtransfer
         run: |
           curl -fsSL git.io/file-transfer | sh
-          ./transfer cow --block 2621440 -s -p 64 --no-progress  ./path/${{ env.FILE_NAME9 }} 2>&1 | tee cowtransfer.log  
+          ./transfer cow --block 2621440 -s -p 64 --no-progress   ${{ env.FILE_NAME9 }} 2>&1 | tee cowtransfer.log  
           echo "$(cat cowtransfer.log)"
           echo "cowtransfer=$(cat cowtransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_ENV
 
