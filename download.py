@@ -9,7 +9,7 @@ if not os.path.exists(folder_path):
     os.makedirs(folder_path)
 
 urllist = [{'name': "MetaCubeX/ClashX.Meta", 'path': 0},
-           {'name': "Molunerfinn/PicGo", 'path': 5}]
+           {'name': "Molunerfinn/PicGo", 'path': 5} ,{'name':"MetaCubeX/ClashMetaForAndroid","path":2},{'name':'legado/releases','path':0}]
 
 for x in urllist:
     url = "https://api.github.com/repos/" + x['name'] + "/releases/latest"
@@ -36,7 +36,7 @@ def zip_folder(folder_path, output_path):
             for file in files:
                 file_path = os.path.join(root, file)
                 zipf.write(file_path, os.path.relpath(file_path, folder_path))
-    shutil.rmtree(folder_path)
+    # shutil.rmtree(folder_path)
 
 
 # 要压缩的文件夹路径
