@@ -11,6 +11,7 @@ jobs:
        steps:
        - name: Checkout code
          uses: actions/checkout@v3
+
        - name: Set up Go
          uses: actions/setup-go@v4
          with:
@@ -18,15 +19,25 @@ jobs:
        - name: 安装依赖
          run: |
              git clone https://github.com/bgvioletsky/DownloadApp.git  bg
+             echo "version=$(bash version.sh)" >> $GITHUB_ENV
              cd ./bg/xbs
              go mod tidy && make
-             echo "vf">>kk.txt
+             echo "下载文件">>kk.txt
+       - name: commit
+         run: |
+             git config --local user.email "44770157@qq.com"
+             git config --local user.name "bgcode"
+             git pull
+             git add version.txt
+             git commit -m "update $(date +'%Y-%m-%d %H:%M:%S')"  
+       - name:  Push changes
+         uses:  ad-m/github-push-action@master
+         with:  
+          branch: main
        - name: 发布到release
          uses: softprops/action-gh-release@v1
-         env:
-           GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN}}
          with:
-           tag_name: dsa
+           tag_name: ${{env.version}}
            body_path: ./bg/xbs/kk.txt
-           files: ./bg/xbs/bin/*
+           files: ./bg/xbs/kk/*
     

@@ -1,5 +1,5 @@
 NAME=xbs
-BINDIR=bin
+BINDIR=kk
 GOBUILD=go build -ldflags '-w -s'
 
 PLATFORM_LIST = \
