@@ -1,13 +1,16 @@
 name: 下载软件并发布文件
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
   schedule:
    - cron: 0 17 * * 5
 env:
   TZ: Asia/Shanghai
+  UPLOAD_1: false
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,21 +37,28 @@ jobs:
         id: compile
         run: |
           echo "bgcode=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+          FILE_NAMES=$(ls /path)
+          echo "FILE_NAMES=${FILE_NAMES}" >> $GITHUB_ENV
+          echo "${{ env.FILE_NAMES}}"
     
       - name: 上传文件
         uses: actions/upload-artifact@main
         with:
           name: bgcode_${{ env.bgcode }}
           path: ./ruanjian.zip
+
       - name: 上传文件
+        if: env.UPLOAD_1 == 'true' && !cancelled()
         uses: actions/upload-artifact@main
         with:
             name: bgcode1_${{ env.bgcode }}
             path: ./path/*
+
       - name: 创建分枝
         id: tag
         run: |
             echo "release_tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+
       - name: 创建链接
         id: ss
         run: |
@@ -70,13 +80,12 @@ jobs:
             url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/ruanjian.zip"
             echo "🔗 [下载]("$url")">> release.txt
             # echo "$url" >> release.txt
-                      
-        
-        
+                        
       - name: 发布到release
         uses: softprops/action-gh-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN}}
+          GITHUB_TOKEN:  ${{ github.token }}
+          # GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN}}
         with:
           tag_name: ${{ env.release_tag }}
           body_path: release.txt
@@ -90,11 +99,6 @@ jobs:
           # token: ${{ secrets.MY_GIT_TOKEN }}
           token: ${{ github.token }}
           repository:  ${{ github.repository }}
-
-
-
-
-
     
       - name: 删除老的Releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
@@ -102,4 +106,4 @@ jobs:
           keep_latest: 4
           delete_tags: true
         env:
-          GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
