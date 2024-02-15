@@ -46,6 +46,7 @@ jobs:
       - name: 设置变量
         id: compile
         run: |
+          echo "version=$(bash version.sh)" >> $GITHUB_ENV
           echo "bgcode=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
           mv ruanjian.zip ./path
           FILE_NAMES=($(ls ./path))
@@ -54,7 +55,6 @@ jobs:
             echo "FILE_NAME${count}=${filename}" >> $GITHUB_ENV
             ((count++))
           done
-          echo "release_tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
     
       - name: 上传文件1
         if: env.UPLOAD_1 == 'true' && !cancelled()
@@ -129,14 +129,14 @@ jobs:
                 "https://download.yzuu.cf"
             )
             jiashua=$((RANDOM % ${#link_url[@]})) 
-            url1=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME1 }}"
-            url2=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME2 }}"
-            url3=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME3 }}"
-            url4=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME4 }}"
-            url5=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME5 }}"
-            url6=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME6 }}"
-            url7=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME7 }}"
-            url8=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME8 }}"
+            url1=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.version}}"/${{ env.FILE_NAME1 }}"
+            url2=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.version}}"/${{ env.FILE_NAME2 }}"
+            url3=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.version}}"/${{ env.FILE_NAME3 }}"
+            url4=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.version}}"/${{ env.FILE_NAME4 }}"
+            url5=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.version}}"/${{ env.FILE_NAME5 }}"
+            url6=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.version}}"/${{ env.FILE_NAME6 }}"
+            url7=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.version}}"/${{ env.FILE_NAME7 }}"
+            url8=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.version}}"/${{ env.FILE_NAME8 }}"
             
             echo "${{ env.FILE_NAME1 }}🔗 [下载]("$url1")">> release.txt
             echo "${{ env.FILE_NAME2 }}🔗 [下载]("$url2")">> release.txt
@@ -146,15 +146,29 @@ jobs:
             echo "${{ env.FILE_NAME6 }}🔗 [下载]("$url6")">> release.txt
             echo "${{ env.FILE_NAME7 }}🔗 [下载]("$url7")">> release.txt
             echo "${{ env.FILE_NAME8 }}🔗 [下载]("$url8")">> release.txt
-                        
+      - name: 压缩文件      
+        id : ssa
+        run : ./ys.sh
       - name: 发布到release
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN}}
         with:
-          tag_name: ${{ env.release_tag }}
+          tag_name: ${{ env.version }}
           body_path: release.txt
           files: ./path/*
+      - name: commit
+        run: |
+             git config --local user.email "44770157@qq.com"
+             git config --local user.name "bgcode"
+             git pull
+             git add version.txt
+             git commit -m "update $(date +'%Y-%m-%d %H:%M:%S')"  
+      - name:  Push changes
+        uses:  ad-m/github-push-action@master
+        with:  
+          branch: main
+          github_token: ${{ secrets.MY_GIT_TOKEN }}
 
       - name: 删除过去的workflow
         uses: GitRML/delete-workflow-runs@main
