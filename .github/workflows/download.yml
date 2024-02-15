@@ -43,10 +43,11 @@ jobs:
         run: |
           echo "bgcode=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
           FILE_NAMES=($(ls ./path))
-          echo "FILE_NAMES1=${FILE_NAMES[0]}" >> $GITHUB_ENV
-          echo "FILE_NAMES2=${FILE_NAMES[1]}" >> $GITHUB_ENV
-          echo "FILE_NAMES3=${FILE_NAMES[2]}" >> $GITHUB_ENV
-          echo "FILE_NAMES4=${FILE_NAMES[3]}" >> $GITHUB_ENV
+          count=1
+          for filename in "${FILE_NAMES[@]}"; do
+            echo "FILE_NAME${count}=${filename}" >> $GITHUB_ENV
+            ((count++))
+          done
           echo "release_tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
           mv ruanjian.zip ./path
     
@@ -80,7 +81,31 @@ jobs:
         with:
             name: bgcode_${{ env.FILE_NAMES4 }}
             path: ./path/${{ env.FILE_NAMES4 }}
-
+      - name: 上传文件5
+        if: env.UPLOAD_5 == 'true' && !cancelled()
+        uses: actions/upload-artifact@main
+        with:
+            name: bgcode_${{ env.FILE_NAMES5 }}
+            path: ./path/${{ env.FILE_NAMES5 }}
+      - name: 上传文件6
+        if: env.UPLOAD_6 == 'true' && !cancelled()
+        uses: actions/upload-artifact@main
+        with:
+            name: bgcode_${{ env.FILE_NAMES6 }}
+            path: ./path/${{ env.FILE_NAMES6 }}
+      - name: 上传文件7
+        if: env.UPLOAD_7 == 'true' && !cancelled()
+        uses: actions/upload-artifact@main
+        with:
+            name: bgcode_${{ env.FILE_NAMES7 }}
+            path: ./path/${{ env.FILE_NAMES7 }}
+      - name: 上传文件8
+        if: env.UPLOAD_8 == 'true' && !cancelled()
+        uses: actions/upload-artifact@main
+        with:
+            name: bgcode_${{ env.FILE_NAMES8 }}
+            path: ./path/${{ env.FILE_NAMES8 }}
+    
       - name: 创建链接
         id: ss
         run: |
