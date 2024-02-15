@@ -114,6 +114,7 @@ jobs:
         run: |
           curl -fsSL git.io/file-transfer | sh
           ./transfer cow --block 2621440 -s -p 64 --no-progress  ./path/${{ env.FILE_NAME9 }} 2>&1 | tee cowtransfer.log  
+          echo "$(cat cowtransfer.log)"
           echo "cowtransfer=$(cat cowtransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_ENV
 
       - name: 创建链接
