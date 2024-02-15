@@ -21,6 +21,7 @@ env:
   
 jobs:
   build:
+    name: 下载
     runs-on: ubuntu-latest
 
     steps:
@@ -169,3 +170,24 @@ jobs:
           delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN }}
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.12
+    - name: 安装依赖
+      run: |
+          cd xbs
+          go build
+    - name: 发布到release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN}}
+      with:
+        tag_name: ${{ env.release_tag }}
+        body_path: release.txt
+        files: ./xbs
+    
