@@ -2,9 +2,9 @@ name: 下载软件并发布文件
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   schedule:
    - cron: 0 17 * * 5
 env:
@@ -106,7 +106,6 @@ jobs:
       - name: 发布到release
         uses: softprops/action-gh-release@v1
         env:
-          # GITHUB_TOKEN:  ${{ github.token }}
           GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN}}
         with:
           tag_name: ${{ env.release_tag }}
@@ -119,7 +118,6 @@ jobs:
           retain_days: 1
           keep_minimum_runs: 4
           token: ${{ secrets.MY_GIT_TOKEN }}
-          # token: ${{ github.token }}
           repository:  ${{ github.repository }}
     
       - name: 删除老的Releases
