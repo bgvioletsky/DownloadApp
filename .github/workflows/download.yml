@@ -85,8 +85,8 @@ jobs:
       - name: 发布到release
         uses: softprops/action-gh-release@v1
         env:
-          GITHUB_TOKEN:  ${{ github.token }}
-          # GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN}}
+          # GITHUB_TOKEN:  ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN}}
         with:
           tag_name: ${{ env.release_tag }}
           body_path: release.txt
@@ -97,8 +97,8 @@ jobs:
         with:
           retain_days: 2
           keep_minimum_runs: 4
-          # token: ${{ secrets.MY_GIT_TOKEN }}
-          token: ${{ github.token }}
+          token: ${{ secrets.MY_GIT_TOKEN }}
+          # token: ${{ github.token }}
           repository:  ${{ github.repository }}
     
       - name: 删除老的Releases
@@ -107,4 +107,4 @@ jobs:
           keep_latest: 4
           delete_tags: true
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.MY_GIT_TOKEN }}
