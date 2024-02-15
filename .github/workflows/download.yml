@@ -128,8 +128,10 @@ jobs:
                 "https://download.yzuu.cf"
             )
             jiashua=$((RANDOM % ${#link_url[@]}))
-            url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/ruanjian.zip"
-            echo "软件合集压缩包🔗 [下载]("$url")">> release.txt
+            for i in {1..8}; do
+            url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/${{ env.release_tag}}/${{ env["FILE_NAME$i"] }}"
+            echo "${{ env["FILE_NAME$i"]}}🔗 [下载]($url)" >> release.txt
+            done
            # echo "奶牛🔗 [下载]("${{env.cowtransfer}}")" >> release.txt
                         
       - name: 发布到release
