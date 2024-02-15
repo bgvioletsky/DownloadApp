@@ -160,7 +160,7 @@ jobs:
           echo "version=$(bash version.sh)" >> $GITHUB_ENV
           cd ./bg/xbs
           go mod tidy && make
-          mv  kk/*  ./path
+          mv  kk/*  ../../path/
       - name: 发布到release
         uses: softprops/action-gh-release@v1
         env:
