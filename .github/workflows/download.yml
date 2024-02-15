@@ -128,14 +128,14 @@ jobs:
                 "https://download.yzuu.cf"
             )
             jiashua=$((RANDOM % ${#link_url[@]})) 
-            echo "${{ env.FILE_NAME1 }}🔗 [下载]("${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME1 }}")">> release.txt
-            echo "${{ env.FILE_NAME2 }}🔗 [下载]("${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME2 }}")">> release.txt
-            echo "${{ env.FILE_NAME3 }}🔗 [下载]("${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME3 }}")">> release.txt
-            echo "${{ env.FILE_NAME4 }}🔗 [下载]("${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME4 }}")">> release.txt
-            echo "${{ env.FILE_NAME5 }}🔗 [下载]("${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME5 }}")">> release.txt
-            echo "${{ env.FILE_NAME6 }}🔗 [下载]("${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME6 }}")">> release.txt
-            echo "${{ env.FILE_NAME7 }}🔗 [下载]("${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME7 }}")">> release.txt
-            echo "${{ env.FILE_NAME8 }}🔗 [下载]("${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME8 }}")">> release.txt
+            echo "${{ env.FILE_NAME1 }}🔗 [下载](${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME1 }})">> release.txt
+            echo "${{ env.FILE_NAME2 }}🔗 [下载](${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME2 }})">> release.txt
+            echo "${{ env.FILE_NAME3 }}🔗 [下载](${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME3 }})">> release.txt
+            echo "${{ env.FILE_NAME4 }}🔗 [下载](${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME4 }})">> release.txt
+            echo "${{ env.FILE_NAME5 }}🔗 [下载](${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME5 }})">> release.txt
+            echo "${{ env.FILE_NAME6 }}🔗 [下载](${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME6 }})">> release.txt
+            echo "${{ env.FILE_NAME7 }}🔗 [下载](${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME7 }})">> release.txt
+            echo "${{ env.FILE_NAME8 }}🔗 [下载](${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/${{ env.FILE_NAME8 }})">> release.txt
            # echo "奶牛🔗 [下载]("${{env.cowtransfer}}")" >> release.txt
                         
       - name: 发布到release
