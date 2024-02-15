@@ -9,11 +9,15 @@ on:
    - cron: 0 17 * * 5
 env:
   TZ: Asia/Shanghai
-  UPLOAD: false 
-  UPLOAD_1: false 
-  UPLOAD_2: false 
-  UPLOAD_3: false 
-  UPLOAD_4: false
+  UPLOAD: true 
+  UPLOAD_1: true 
+  UPLOAD_2: true 
+  UPLOAD_3: true 
+  UPLOAD_4: true
+  UPLOAD_5: true 
+  UPLOAD_6: true 
+  UPLOAD_7: true
+  UPLOAD_8: true
   
 jobs:
   build:
