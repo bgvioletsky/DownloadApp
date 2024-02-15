@@ -112,9 +112,7 @@ jobs:
         with:
           tag_name: ${{ env.release_tag }}
           body_path: release.txt
-          files: ｜
-                  ./ruanjian.zip
-                  ./path
+          files: ./path/*
 
       - name: 删除过去的workflow
         uses: GitRML/delete-workflow-runs@main
