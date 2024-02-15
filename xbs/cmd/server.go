@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"XBS/src"
+	"xbs/src"
 	"os"
 	"os/signal"
 	"syscall"

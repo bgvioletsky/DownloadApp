@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"XBS/xbstools"
+	"xbs/xbstools"
 	"os"
 	"path/filepath"
 

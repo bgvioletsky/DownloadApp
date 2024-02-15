@@ -1,4 +1,4 @@
-module XBS
+module xbs
 
 go 1.21.0
 

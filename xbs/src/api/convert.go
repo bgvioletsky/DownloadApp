@@ -1,7 +1,7 @@
 package api
 
 import (
-	"XBS/xbstools"
+	"xbs/xbstools"
 	"encoding/json"
 	"fmt"
 	"io"

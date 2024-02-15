@@ -3,7 +3,7 @@ package cmd
 import (
 	"os"
 	"path/filepath"
-	"XBS/xbstools"
+	"xbs/xbstools"
 	"github.com/spf13/cobra"
 )
 

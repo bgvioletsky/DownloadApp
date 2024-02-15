@@ -1,7 +1,7 @@
 package src
 
 import (
-	"XBS/src/api"
+	"xbs/src/api"
 	"context"
 	"embed"
 	"log"
