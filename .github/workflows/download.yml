@@ -109,7 +109,7 @@ jobs:
         with:
           name: bgcode_${{ env.FILE_NAME9 }}
           path: ./path/${{ env.FILE_NAME9 }}
-          
+
       - name: 创建链接
         id: ss
         run: |
@@ -130,7 +130,7 @@ jobs:
             jiashua=$((RANDOM % ${#link_url[@]}))
             url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/ruanjian.zip"
             echo "软件合集压缩包🔗 [下载]("$url")">> release.txt
-            echo "奶牛🔗 [下载]("${{env.cowtransfer}}")" >> release.txt
+           # echo "奶牛🔗 [下载]("${{env.cowtransfer}}")" >> release.txt
                         
       - name: 发布到release
         uses: softprops/action-gh-release@v1
