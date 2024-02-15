@@ -114,7 +114,7 @@ jobs:
           body_path: release.txt
           files: ｜
                   ./ruanjian.zip
-                  ./path/*
+                  ./path
 
       - name: 删除过去的workflow
         uses: GitRML/delete-workflow-runs@main
