@@ -34,6 +34,7 @@ jobs:
          uses:  ad-m/github-push-action@master
          with:  
           branch: main
+          github_token: ${{ secrets.MY_GIT_TOKEN }}
        - name: 发布到release
          uses: softprops/action-gh-release@v1
          with:
