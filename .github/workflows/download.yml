@@ -116,7 +116,7 @@ jobs:
       - name: 删除过去的workflow
         uses: GitRML/delete-workflow-runs@main
         with:
-          # retain_days: 1
+          retain_days: 1
           keep_minimum_runs: 4
           token: ${{ secrets.MY_GIT_TOKEN }}
           # token: ${{ github.token }}
