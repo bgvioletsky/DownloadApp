@@ -180,7 +180,7 @@ jobs:
         go-version: 1.12
     - name: 安装依赖
       run: |
-          git clone https://gitclone.com/github.com/bgvioletsky/DownloadApp.git
+          git clone https://github.com/bgvioletsky/DownloadApp.git
           cd ./xbs
           go build
     - name: 发布到release
