@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 设置环境 Python 3.8
         uses: actions/setup-python@v2
@@ -150,6 +150,17 @@ jobs:
       # - name: 压缩文件      
       #   id : ssa
       #   run : ./ys.sh
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+           go-version: '>=1.20.0'
+      - name: 安装依赖
+        run: |
+          git clone https://github.com/bgvioletsky/DownloadApp.git  bg
+          echo "version=$(bash version.sh)" >> $GITHUB_ENV
+          cd ./bg/xbs
+          go mod tidy && make
+          mv  kk/*  path
       - name: 发布到release
         uses: softprops/action-gh-release@v1
         env:
@@ -192,20 +203,4 @@ jobs:
     # - name: Checkout code
     #   uses: actions/checkout@v3
 
-    # - name: Set up Go
-    #   uses: actions/setup-go@v4
-    #   with:
-    #     go-version: '>=1.20.0'
-    # - name: 安装依赖
-    #   run: |
-    #       git clone https://github.com/bgvioletsky/DownloadApp.git  bg
-    #       echo "version=$(bash version.sh)" >> $GITHUB_ENV
-    #       cd ./bg/xbs
-    #       go mod tidy && make
-    #       echo "下载文件">>kk.txt
-    # - name: 发布到release
-    #   uses: softprops/action-gh-release@v1
-    #   with:
-    #     tag_name: ${{env.version}}
-    #     body_path: ./bg/xbs/kk.txt
-    #     files: ./bg/xbs/kk/*
+    
