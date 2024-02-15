@@ -23,18 +23,6 @@ jobs:
              cd ./bg/xbs
              go mod tidy && make
              echo "下载文件">>kk.txt
-       - name: commit
-         run: |
-             git config --local user.email "44770157@qq.com"
-             git config --local user.name "bgcode"
-             git pull
-             git add version.txt
-             git commit -m "update $(date +'%Y-%m-%d %H:%M:%S')"  
-       - name:  Push changes
-         uses:  ad-m/github-push-action@master
-         with:  
-          branch: main
-          github_token: ${{ secrets.MY_GIT_TOKEN }}
        - name: 发布到release
          uses: softprops/action-gh-release@v1
          with:
