@@ -109,7 +109,13 @@ jobs:
         with:
           name: bgcode_${{ env.FILE_NAME9 }}
           path: ./path/${{ env.FILE_NAME9 }}
-      
+      - name: Upload firmware to cowtransfer
+        id: cowtransfer
+        run: |
+          curl -fsSL git.io/file-transfer | sh
+          ./transfer cow --block 2621440 -s -p 64 --no-progress  ./path/${{ env.FILE_NAME9 }} 2>&1 | tee cowtransfer.log  
+          echo "cowtransfer=$(cat cowtransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_ENV
+
       - name: 创建链接
         id: ss
         run: |
@@ -130,7 +136,7 @@ jobs:
             jiashua=$((RANDOM % ${#link_url[@]}))
             url=${link_url[$jiashua]}"/bgvioletsky/DownloadApp/releases/download/"${{ env.release_tag}}"/ruanjian.zip"
             echo "软件合集压缩包🔗 [下载]("$url")">> release.txt
-            # echo "$url" >> release.txt
+            echo "奶牛🔗 [下载]("${{env.cowtransfer}}")" >> release.txt
                         
       - name: 发布到release
         uses: softprops/action-gh-release@v1
@@ -145,9 +151,8 @@ jobs:
         uses: GitRML/delete-workflow-runs@main
         with:
           retain_days: 1
-          keep_minimum_runs: 4
-          token: ${{ secrets.MY_GIT_TOKEN }}
-          repository:  ${{ github.repository }}
+          keep_minimum_runs: 3
+          
     
       - name: 删除老的Releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
