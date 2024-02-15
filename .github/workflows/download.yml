@@ -38,8 +38,9 @@ jobs:
         run: |
           echo "bgcode=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
           FILE_NAMES=$(ls ./path)
-          echo "FILE_NAMES=${FILE_NAMES}" >> $GITHUB_ENV
-          echo "${{ env.FILE_NAMES}}"
+          # echo "FILE_NAMES=${FILE_NAMES}" >> $GITHUB_ENV
+          # echo "${{ env.FILE_NAMES}}"
+          echo "${FILE_NAMES}"
     
       - name: 上传文件
         uses: actions/upload-artifact@main
