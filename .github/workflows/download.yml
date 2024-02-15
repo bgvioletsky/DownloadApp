@@ -9,15 +9,15 @@ on:
    - cron: 0 17 * * 5
 env:
   TZ: Asia/Shanghai
-  UPLOAD_9: fales 
   UPLOAD_1: true 
   UPLOAD_2: true 
   UPLOAD_3: true 
   UPLOAD_4: true
-  UPLOAD_5: fales 
-  UPLOAD_6: fales 
-  UPLOAD_7: fales
-  UPLOAD_8: fales
+  UPLOAD_5: true 
+  UPLOAD_6: true 
+  UPLOAD_7: true
+  UPLOAD_8: true
+  UPLOAD_9: true 
   
 jobs:
   build:
@@ -55,12 +55,6 @@ jobs:
           done
           echo "release_tag=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
     
-      - name: 上传文件
-        if: env.UPLOAD_9 == 'true' && !cancelled()
-        uses: actions/upload-artifact@main
-        with:
-          name: bgcode_${{ env.FILE_NAME9 }}
-          path: ./path/${{ env.FILE_NAME9 }}
       - name: 上传文件1
         if: env.UPLOAD_1 == 'true' && !cancelled()
         uses: actions/upload-artifact@main
@@ -109,7 +103,13 @@ jobs:
         with:
             name: bgcode_${{ env.FILE_NAME8 }}
             path: ./path/${{ env.FILE_NAME8 }}
-    
+      - name: 上传文件9
+        if: env.UPLOAD_9 == 'true' && !cancelled()
+        uses: actions/upload-artifact@main
+        with:
+          name: bgcode_${{ env.FILE_NAME9 }}
+          path: ./path/${{ env.FILE_NAME9 }}
+      
       - name: 创建链接
         id: ss
         run: |
