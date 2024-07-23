@@ -22,6 +22,6 @@ jobs:
              git config --local user.email "bglhcode@qq.com"
              git config --local user.name "bgcode"
              git pull
-             git add .github/env/version.txt
+             git add version
              git commit -m "update $(date +'%Y-%m-%d %H:%M:%S')"  
              git push
