@@ -16,7 +16,7 @@ jobs:
         - name: 设置环境版本号
           run: |
               echo "version=$(bash version.sh)" >> $GITHUB_ENV
-              echo "bgcode=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+              echo "bgcode=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
         - name: commit
           run: |
              git config --local user.email "bglhcode@qq.com"
