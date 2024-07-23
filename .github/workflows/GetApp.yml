@@ -19,12 +19,12 @@ jobs:
               cd .github | mkdir env
               ls -al > bgcode.txt
               cd env 
-              touch kk.txt
+              ls -al >> bgcode.txt
         - name: commit
           run: |
              git config --local user.email "bglhcode@qq.com"
              git config --local user.name "bgcode"
              git pull
-             git add bgcode.txt .github/env/kk.txt
+             git add bgcode.txt 
              git commit -m "update $(date +'%Y-%m-%d %H:%M:%S')"  
              git push
