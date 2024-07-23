@@ -1,0 +1,14 @@
+total 52
+drwxr-xr-x 4 runner docker 4096 Jul 23 14:53 .
+drwxr-xr-x 3 runner docker 4096 Jul 23 14:53 ..
+drwxr-xr-x 8 runner docker 4096 Jul 23 14:53 .git
+drwxr-xr-x 5 runner docker 4096 Jul 23 14:53 .github
+-rw-r--r-- 1 runner docker   33 Jul 23 14:53 .gitignore
+-rw-r--r-- 1 runner docker  578 Jul 23 14:53 Applist.json
+-rw-r--r-- 1 runner docker   42 Jul 23 14:53 README.md
+-rw-r--r-- 1 runner docker  764 Jul 23 14:53 bgcode.txt
+-rw-r--r-- 1 runner docker 1933 Jul 23 14:53 download.py
+-rw-r--r-- 1 runner docker   51 Jul 23 14:53 requirements.txt
+-rwxr-xr-x 1 runner docker  971 Jul 23 14:53 version.sh
+-rw-r--r-- 1 runner docker    6 Jul 23 14:53 version.txt
+-rwxr-xr-x 1 runner docker  592 Jul 23 14:53 ys.sh
