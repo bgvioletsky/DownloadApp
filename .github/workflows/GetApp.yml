@@ -16,7 +16,7 @@ jobs:
         - name: 设置环境 下载相应工具
         #   uses: ./.github/actions/setup
           run: |
-              cd .github | mkidir env
+              cd .github | mkdir env
               ls -al > bgcode.txt
               cd env 
               touch kk.txt
