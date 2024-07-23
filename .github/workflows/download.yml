@@ -2,23 +2,10 @@ name: 下载软件并发布文件
 
 on:
   workflow_dispatch:
-  
-  
-  
   schedule:
    - cron: 0 17 * * 5
 env:
   TZ: Asia/Shanghai
-  UPLOAD_1: true 
-  UPLOAD_2: true 
-  UPLOAD_3: true 
-  UPLOAD_4: true
-  UPLOAD_5: true 
-  UPLOAD_6: true 
-  UPLOAD_7: true
-  UPLOAD_8: true
-  UPLOAD_9: true 
-  XBS     : false
   
 jobs:
   build:
@@ -57,66 +44,11 @@ jobs:
             ((count++))
           done
     
-      - name: 上传文件1
-        if: env.UPLOAD_1 == 'true' && !cancelled()
-        uses: actions/upload-artifact@main
-        with:
-            name: bgcode_${{ env.FILE_NAME1 }}
-            path: ./path/${{ env.FILE_NAME1 }}
-      - name: 上传文件2
-        if: env.UPLOAD_2 == 'true' && !cancelled()
-        uses: actions/upload-artifact@main
-        with:
-            name: bgcode_${{ env.FILE_NAME2 }}
-            path: ./path/${{ env.FILE_NAME2 }}
-      - name: 上传文件3
-        if: env.UPLOAD_3 == 'true' && !cancelled()
-        uses: actions/upload-artifact@main
-        with:
-            name: bgcode_${{ env.FILE_NAME3 }}
-            path: ./path/${{ env.FILE_NAME3 }}
-      - name: 上传文件4
-        if: env.UPLOAD_4 == 'true' && !cancelled()
-        uses: actions/upload-artifact@main
-        with:
-            name: bgcode_${{ env.FILE_NAME4 }}
-            path: ./path/${{ env.FILE_NAME4 }}
-      - name: 上传文件5
-        if: env.UPLOAD_5 == 'true' && !cancelled()
-        uses: actions/upload-artifact@main
-        with:
-            name: bgcode_${{ env.FILE_NAME5 }}
-            path: ./path/${{ env.FILE_NAME5 }}
-      - name: 上传文件6
-        if: env.UPLOAD_6 == 'true' && !cancelled()
-        uses: actions/upload-artifact@main
-        with:
-            name: bgcode_${{ env.FILE_NAME6 }}
-            path: ./path/${{ env.FILE_NAME6 }}
-      - name: 上传文件7
-        if: env.UPLOAD_7 == 'true' && !cancelled()
-        uses: actions/upload-artifact@main
-        with:
-            name: bgcode_${{ env.FILE_NAME7 }}
-            path: ./path/${{ env.FILE_NAME7 }}
-      - name: 上传文件8
-        if: env.UPLOAD_8 == 'true' && !cancelled()
-        uses: actions/upload-artifact@main
-        with:
-            name: bgcode_${{ env.FILE_NAME8 }}
-            path: ./path/${{ env.FILE_NAME8 }}
-      - name: 上传文件9
-        if: env.UPLOAD_9 == 'true' && !cancelled()
-        uses: actions/upload-artifact@main
-        with:
-          name: bgcode_${{ env.FILE_NAME9 }}
-          path: ./path/${{ env.FILE_NAME9 }}
 
       - name: 创建链接
         id: ss
         run: |  
             echo "下载软件app">> release.txt
-
       - name: Set up Go
         if: env.XBS == 'true' && !cancelled()
         uses: actions/setup-go@v4
@@ -140,7 +72,7 @@ jobs:
           files: ./path/*
       - name: commit
         run: |
-             git config --local user.email "44770157@qq.com"
+             git config --local user.email "bglhcode@qq.com"
              git config --local user.name "bgcode"
              git pull
              git add version.txt
@@ -150,14 +82,11 @@ jobs:
         with:  
           branch: main
           github_token: ${{ secrets.MY_GIT_TOKEN }}
-
       - name: 删除过去的workflow
         uses: GitRML/delete-workflow-runs@main
         with:
           retain_days: 1
-          keep_minimum_runs: 3
-          
-    
+          keep_minimum_runs: 3   
       - name: 删除老的Releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
         with:
