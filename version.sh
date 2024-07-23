@@ -3,18 +3,18 @@
  # @Author: bgcode
  # @Date: 2024-07-23 10:23:52
  # @LastEditors: bgcode
- # @LastEditTime: 2024-07-23 15:11:26
+ # @LastEditTime: 2024-07-23 15:13:47
  # @Description: 
  # @FilePath: /DownloadApp/version.sh
 ### 
 
 # 检查存储版本号的文件是否存在，如果不存在则创建并初始化为0.0.0
-if [ ! -f .github/env/versin.txt ]; then
-    echo "0.0.0" > .github/env/versin.txt
+if [ ! -f version ]; then
+    echo "0.0.0" > version
 fi
 
-# 从.github/env/versin.txt文件中读取当前版本号
-VERSION=$(cat .github/env/versin.txt)
+# 从version文件中读取当前版本号
+VERSION=$(cat version)
 
 # 以"."分割版本号，并将其放入数组中
 IFS='.' read -r -a versionArray <<< "$VERSION"
@@ -34,8 +34,8 @@ if [ "${versionArray[2]}" -eq 20 ]; then
     fi
 fi
 
-# 将新版本号写回到.github/env/versin.txt文件中
-echo "${versionArray[0]}.${versionArray[1]}.${versionArray[2]}" > .github/env/versin.txt
+# 将新版本号写回到version文件中
+echo "${versionArray[0]}.${versionArray[1]}.${versionArray[2]}" > version
 
 # 打印新版本号
 echo "v${versionArray[0]}.${versionArray[1]}.${versionArray[2]}"
