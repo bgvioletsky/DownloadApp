@@ -1,0 +1,8 @@
+Applist.json
+README.md
+bgcode.txt
+download.py
+requirements.txt
+version.sh
+version.txt
+ys.sh
