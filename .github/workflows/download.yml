@@ -49,19 +49,8 @@ jobs:
         id: ss
         run: |  
             echo "下载软件app">> release.txt
-      - name: Set up Go
-        if: env.XBS == 'true' && !cancelled()
-        uses: actions/setup-go@v4
-        with:
-           go-version: '>=1.20.0'
-      - name: 安装依赖
-        if: env.XBS == 'true' && !cancelled()
-        run: |
-          git clone https://github.com/bgvioletsky/DownloadApp.git  bg
-          echo "version=$(bash version.sh)" >> $GITHUB_ENV
-          cd ./bg/xbs
-          go mod tidy && make
-          mv  kk/*  ../../path/
+      
+    
       - name: 发布到release
         uses: softprops/action-gh-release@v1
         env:
@@ -77,16 +66,7 @@ jobs:
              git pull
              git add version.txt
              git commit -m "update $(date +'%Y-%m-%d %H:%M:%S')"  
-      - name:  Push changes
-        uses:  ad-m/github-push-action@master
-        with:  
-          branch: main
-          github_token: ${{ secrets.MY_GIT_TOKEN }}
-      - name: 删除过去的workflow
-        uses: GitRML/delete-workflow-runs@main
-        with:
-          retain_days: 1
-          keep_minimum_runs: 3   
+             git push
       - name: 删除老的Releases
         uses: dev-drprasad/delete-older-releases@v0.1.0
         with:

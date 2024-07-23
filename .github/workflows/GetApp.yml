@@ -1,0 +1,27 @@
+name: 下载软件并发布文件
+
+on:
+  workflow_dispatch:
+#   schedule:
+#    - cron: 0 17 * * 5
+env:
+  TZ: Asia/Shanghai
+jobs:
+  build:
+    name: 下载
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+        - name: 设置环境 下载相应工具
+        #   uses: ./.github/actions/setup
+          run: |
+              ls > bgcode.txt
+        - name: commit
+          run: |
+             git config --local user.email "bglhcode@qq.com"
+             git config --local user.name "bgcode"
+             git pull
+             git add bgcode.txt
+             git commit -m "update $(date +'%Y-%m-%d %H:%M:%S')"  
+             git push
