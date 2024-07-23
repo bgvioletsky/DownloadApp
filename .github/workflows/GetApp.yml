@@ -15,10 +15,10 @@ jobs:
           uses: actions/checkout@v3
         - name: 设置环境版本号
           run: |
-              if [ ! -f .github/env/version ]; then
-                    echo "0.0.0" > .github/env/version
+              if [ ! -f .github/env/version.txt ]; then
+                    echo "0.0.0" > .github/env/version.txt
               fi
-              VERSION=$(cat .github/env/version)
+              VERSION=$(cat .github/env/version.txt)
               IFS='.' read -r -a versionArray <<< "$VERSION"
 
               # 递增最后一位数字
@@ -35,7 +35,7 @@ jobs:
                         ((versionArray[0]++))
                     fi
               fi
-              echo "${versionArray[0]}.${versionArray[1]}.${versionArray[2]}" > .github/env/version
+              echo "${versionArray[0]}.${versionArray[1]}.${versionArray[2]}" > .github/env/version.txt
 
               # 打印新版本号
               echo "v${versionArray[0]}.${versionArray[1]}.${versionArray[2]}"
